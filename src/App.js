@@ -7,26 +7,32 @@ function App() {
 
   useEffect(() => {
     const getApi = async () => {
-      const response = await fetch("localhost:4000/get");
+      console.log("getting");
+      const response = await fetch("http://localhost:4000/get");
       const responseObj = await response.json();
+      console.log("setting");
+      console.log(responseObj.data);
       setCoinData(responseObj.data);
     };
-
     getApi();
-  });
+  }, []);
 
   return (
     <div className="App">
       <table>
         <thead>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Market Cap</th>
-          <th scope="col">Circulating Supply</th>
-          <th scope="col">Change &</th>
-          <th scope="col">Last (24H)</th>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Market Cap</th>
+            <th scope="col">Circulating Supply</th>
+            <th scope="col">Change &</th>
+            <th scope="col">Last (24H)</th>
+          </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <tr></tr>
+        </tbody>
       </table>
     </div>
   );
