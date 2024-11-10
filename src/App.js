@@ -1,9 +1,24 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 
 function App() {
   const [coinData, setCoinData] = useState([]);
+
+  const filterCoinData = (data = []) => {
+    const filteredData = [];
+
+    data.forEach((rawRow) => {
+      const filteredRow = [];
+      const keys = Object.keys(rawRow);
+      keys.forEach((key) => {
+        if (["name", "symbol"].includes(key)) {
+          filteredRow[key] = rawRow[key];
+        } else if (key === "circulating_supply") {
+          filteredRow[key] = displayNumber(rawRow[key]);
+        }
+      });
+    });
+  };
 
   useEffect(() => {
     const getApi = async () => {
