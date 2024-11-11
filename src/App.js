@@ -19,7 +19,7 @@ function App() {
         } else if (key === "quote" && !!rawRow.quote.USD) {
           const data = rawRow.quote.USD;
           filteredRow["price"] = displayNumber(data.price);
-          filteredRow["marketcap"] = displayNumber(data.marketcap);
+          filteredRow["market_cap"] = displayNumber(data.market_cap);
           filteredRow["percent_change_24h"] = displayNumber(
             data.percent_change_24h
           );
@@ -64,8 +64,8 @@ function App() {
                     <div style={{ fontSize: 6 }}>{row.symbol}</div>
                   </div>
                 </td>
-                <td>{row.price}</td>
-                <td>{row.marketcap}</td>
+                <td>${row.price}</td>
+                <td>${row.market_cap}</td>
                 <td>{row.circulating_supply}</td>
                 <td>{row.percent_change_24h}</td>
               </tr>
