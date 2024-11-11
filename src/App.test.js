@@ -1,8 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders 5 table headers with the correct titles", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const headerStrings = [
+    "Name",
+    "Price",
+    "Market Cap",
+    "Circulating Supply",
+    "Change % (24h)",
+  ];
+  headerStrings.forEach((string) => {
+    const header = screen.getByRole("columnheader", { name: string });
+    expect(header).toBeInTheDocument();
+  });
+
+  const columnHeadings = screen.getAllByRole("columnheader");
+  expect(columnHeadings).toHaveLength(5);
 });
