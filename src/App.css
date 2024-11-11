@@ -9,10 +9,13 @@ table {
 }
 
 th {
-  background-color: sandybrown;
+  background-color: rgba(244, 235, 197, 0.8);
+  padding: 5px 10px;
+  font-size: 6px;
+  text-align: left;
 }
 
-.row_header {
+.row-header {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -20,14 +23,47 @@ th {
   margin-left: 5px;
 }
 
-.posChange {
+td {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.bubble {
+  display: flex;
+  font-size: 6px;
+  padding: 2px 5px;
+  max-width: 20px;
+  justify-content: center;
+}
+
+.pos-change {
   border: 1px solid rgba(144, 240, 82, 0.8);
   border-radius: 20px;
   background-color: rgba(204, 245, 177, 0.8);
 }
 
-.negChange {
+.neg-change {
   border: 1px solid rgba(240, 98, 82, 0.8);
   border-radius: 20px;
   background-color: rgba(245, 181, 177, 0.8);
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  margin-top: 2px;
+  margin-right: 2px;
+  border-bottom: 3px solid green;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  margin-top: 2px;
+  margin-right: 2px;
+  border-top: 3px solid red;
 }

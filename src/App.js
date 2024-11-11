@@ -44,8 +44,14 @@ function App() {
 
   const getChangeClass = (string) => {
     const num = parseInt(string);
-    if (num > 0) return "posChange";
-    return "negChange";
+    if (num > 0) return "bubble pos-change";
+    return "bubble neg-change";
+  };
+
+  const getArrowClass = (string) => {
+    const num = parseInt(string);
+    if (num > 0) return "arrow-up";
+    return "arrow-down";
   };
 
   return (
@@ -65,7 +71,7 @@ function App() {
             filterCoinData(coinData).map((row, i) => (
               <tr>
                 <td>
-                  <div className="row_header">
+                  <div className="row-header">
                     <div style={{ fontWeight: "bold" }}>{row.name}</div>
                     <div style={{ fontSize: 6 }}>{row.symbol}</div>
                   </div>
@@ -73,8 +79,11 @@ function App() {
                 <td>${row.price}</td>
                 <td>${row.market_cap}</td>
                 <td>{row.circulating_supply}</td>
-                <td className={getChangeClass(row.percent_change_24h)}>
-                  {row.percent_change_24h.replace("-", "")}
+                <td>
+                  <div className={getChangeClass(row.percent_change_24h)}>
+                    <div className={getArrowClass(row.percent_change_24h)} />
+                    {row.percent_change_24h.replace("-", "")}
+                  </div>
                 </td>
               </tr>
             ))}
