@@ -13,6 +13,6 @@ export const displayNumber = (num) => {
   if (num > trill) return `${roundToDecimal(num / trill)}T`;
   if (num > bill) return `${roundToDecimal(num / bill)}B`;
   if (num > mill) return `${roundToDecimal(num / mill)}M`;
-  if (num < 0.01) return "<0.01";
+  if (num < 0.01 && num > 0) return "<0.01";
   return roundToDecimal(num);
 };

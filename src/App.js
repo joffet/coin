@@ -42,6 +42,12 @@ function App() {
     getApi();
   }, []);
 
+  const getChangeClass = (string) => {
+    const num = parseInt(string);
+    if (num > 0) return "posChange";
+    return "negChange";
+  };
+
   return (
     <div className="App">
       <table>
@@ -51,7 +57,7 @@ function App() {
             <th scope="col">Price</th>
             <th scope="col">Market Cap</th>
             <th scope="col">Circulating Supply</th>
-            <th scope="col">Change &</th>
+            <th scope="col">Change % (24h)</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +73,9 @@ function App() {
                 <td>${row.price}</td>
                 <td>${row.market_cap}</td>
                 <td>{row.circulating_supply}</td>
-                <td>{row.percent_change_24h}</td>
+                <td className={getChangeClass(row.percent_change_24h)}>
+                  {row.percent_change_24h.replace("-", "")}
+                </td>
               </tr>
             ))}
           <tr></tr>

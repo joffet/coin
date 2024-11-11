@@ -19,3 +19,15 @@ th {
   justify-content: start;
   margin-left: 5px;
 }
+
+.posChange {
+  border: 1px solid rgba(144, 240, 82, 0.8);
+  border-radius: 20px;
+  background-color: rgba(204, 245, 177, 0.8);
+}
+
+.negChange {
+  border: 1px solid rgba(240, 98, 82, 0.8);
+  border-radius: 20px;
+  background-color: rgba(245, 181, 177, 0.8);
+}
