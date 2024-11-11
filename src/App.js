@@ -1,9 +1,10 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { displayNumber } from "./shared";
 
 function App() {
   const [coinData, setCoinData] = useState([]);
+  const intervalId = useRef();
 
   const filterCoinData = (data = []) => {
     const filteredData = [];
@@ -36,10 +37,10 @@ function App() {
       const response = await fetch("http://localhost:4000/get");
       const responseObj = await response.json();
       console.log("setting");
-      console.log(responseObj.data);
       setCoinData(responseObj.data);
     };
     getApi();
+    intervalId.current = setInterval(getApi, 60000);
   }, []);
 
   const getChangeClass = (string) => {
@@ -69,7 +70,7 @@ function App() {
         <tbody>
           {coinData?.length > 0 &&
             filterCoinData(coinData).map((row, i) => (
-              <tr>
+              <tr key={i}>
                 <td>
                   <div className="row-header">
                     <div style={{ fontWeight: "bold" }}>{row.name}</div>
