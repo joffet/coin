@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import { displayNumber } from "./shared";
 
 function App() {
   const [coinData, setCoinData] = useState([]);
@@ -15,9 +16,18 @@ function App() {
           filteredRow[key] = rawRow[key];
         } else if (key === "circulating_supply") {
           filteredRow[key] = displayNumber(rawRow[key]);
+        } else if (key === "quote" && !!rawRow.quote.USD) {
+          const data = rawRow.quote.USD;
+          filteredRow["price"] = displayNumber(data.price);
+          filteredRow["marketcap"] = displayNumber(data.marketcap);
+          filteredRow["percent_change_24h"] = displayNumber(
+            data.percent_change_24h
+          );
         }
       });
+      filteredData.push(filteredRow);
     });
+    return filteredData;
   };
 
   useEffect(() => {
@@ -46,6 +56,16 @@ function App() {
           </tr>
         </thead>
         <tbody>
+          {coinData?.length > 0 &&
+            filterCoinData(coinData).map((row, i) => (
+              <tr>
+                <td>{row.name}</td>
+                <td>{row.price}</td>
+                <td>{row.marketcap}</td>
+                <td>{row.circulating_supply}</td>
+                <td>{row.percent_change_24h}</td>
+              </tr>
+            ))}
           <tr></tr>
         </tbody>
       </table>
