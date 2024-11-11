@@ -52,14 +52,18 @@ function App() {
             <th scope="col">Market Cap</th>
             <th scope="col">Circulating Supply</th>
             <th scope="col">Change &</th>
-            <th scope="col">Last (24H)</th>
           </tr>
         </thead>
         <tbody>
           {coinData?.length > 0 &&
             filterCoinData(coinData).map((row, i) => (
               <tr>
-                <td>{row.name}</td>
+                <td>
+                  <div className="row_header">
+                    <div style={{ fontWeight: "bold" }}>{row.name}</div>
+                    <div style={{ fontSize: 6 }}>{row.symbol}</div>
+                  </div>
+                </td>
                 <td>{row.price}</td>
                 <td>{row.marketcap}</td>
                 <td>{row.circulating_supply}</td>
